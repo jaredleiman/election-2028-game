@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-slate-100 antialiased;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(30, 58, 110, 0.45), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212, 175, 55, 0.07), transparent 70%),
+      #050b14;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-gold-400/30 text-slate-50;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-gold-500/15 bg-[rgba(12,20,34,0.62)] shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%);
+  }
+
+  .glass-strong {
+    @apply border border-gold-500/25 bg-[rgba(14,24,40,0.85)] shadow-[0_24px_64px_rgba(0,0,0,0.6)] backdrop-blur-2xl;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 35%);
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(232, 197, 71, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 197, 71, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 14px rgba(232, 197, 71, 0.45);
+  }
+
+  .state-path {
+    transition: fill 0.5s ease, stroke 0.2s ease, stroke-width 0.2s ease, filter 0.3s ease, opacity 0.2s ease;
+    stroke-linejoin: round;
+  }
+
+  .state-path:hover,
+  .state-path:focus-visible {
+    filter: brightness(1.25);
+    stroke: #e8c547;
+    stroke-width: 2;
+    outline: none;
+  }
+
+  .state-selected {
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(96, 165, 250, 0.7));
+  }
+
+  .gold-range {
+    @apply h-1.5 cursor-pointer appearance-none rounded-full bg-navy-950 ring-1 ring-gold-500/20;
+    background: linear-gradient(to right, #d4af37 var(--fill, 0%), #0a1426 var(--fill, 0%));
+  }
+
+  .gold-range::-webkit-slider-thumb {
+    @apply h-5 w-5 appearance-none rounded-full border-2 border-gold-200 bg-gold-400 shadow-gold transition hover:scale-110;
+  }
+
+  .gold-range::-moz-range-thumb {
+    @apply h-5 w-5 rounded-full border-2 border-gold-200 bg-gold-400 shadow-gold;
+  }
+}
+
+@layer utilities {
+  .animate-ticker {
+    animation: ticker 32s linear infinite;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, -5vh) rotate(0deg);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 0px), 105vh) rotate(540deg);
+  }
+}
+
+.confetti-piece {
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
